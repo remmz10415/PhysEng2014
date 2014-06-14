@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import command.CommandManager;
+import cjpl.command.CommandManager;
 
 /**
  * The main class to start the engine. Uses ugly Swing.

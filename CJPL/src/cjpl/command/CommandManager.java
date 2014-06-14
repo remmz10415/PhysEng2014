@@ -1,4 +1,4 @@
-package command;
+package cjpl.command;
 
 /**
  * Handles commands.
