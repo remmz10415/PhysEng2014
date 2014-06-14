@@ -8,84 +8,103 @@ import java.util.ArrayList;
  */
 public abstract class Vector3f {
  
-    protected float x,y,z;
-    protected ArrayList<Vector3f> derivatives;
-    protected ArrayList<Vector3f> antiderivativeOf;
-    public final Vector3f ZERO = null;
+    private double x,y,z;
+    private Vector3f deriv, antideriv;
+    private static Vector3f ZERO = null;
     
-    public float getX() {
+    public double getX() {
         return this.x;
     }
     
-    public float getY() {
+    public double getY() {
         return this.y;    
     }
     
-    public float getZ() {
+    public double getZ() {
         return this.z;
     }
     
-    public float[] get() {
-        return new float[] {this.x, this.y, this.z};
+    public double[] get() {
+        return new double[] {this.x, this.y, this.z};
     }
     
-    public void setX(float x) {
+    public void setX(double x) {
         this.x = x;
     }
     
-    public void setY(float y) {
+    public void setY(double y) {
         this.y = y;
     }
     
-    public void setZ(float z) {
+    public void setZ(double z) {
         this.z = z;
     }
     
-    public void set(float[] v) {
+    public void set(double[] v) {
         this.x = v[0];
         this.y = v[1];
         this.z = v[2];
     }
     
-    public void set(float x, float y, float z) {
+    public void set(double x, double y, double z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
     
-    public void bindDerivative(Vector3f d, int order) {
-        if(order < 1) {
-            System.err.println("ERROR: Attempt to add derivative of nonsensical order. For negative orders, see Vector3f.bindAsAntiderivative()");
-            return;
-        } else if(order > this.derivatives.size() - 1) {
-            d.bindAsAntiderivative(this, order);
-            ZERO.set(0,0,0);
-            System.err.println("WARNING: Order exceeds that of highest-order defined derivative. Undefined derivatives have been zeroed to factor in specified vector.");
-            for(int i = this.derivatives.size() - 1; i < order; i++) {
-                this.derivatives.add(i, ZERO);
-            }
-            this.derivatives.add(order, d);
+    public boolean compare(Vector3f v) {
+        if(this.get() == v.get()) {
+            return true;
         } else {
-            d.bindAsAntiderivative(this, order);
-            this.derivatives.add(order, d);
+            return false;
         }
     }
     
-    public void bindAsAntiderivative(Vector3f d, int order) {
-        if(order < 1) {
-            System.err.println("ERROR: Attempt to add antiderivative of nonsensical order. For negative orders, see Vector3f.bindDerivative()");
+    public Vector3f getDeriv() {
+        return this.deriv;
+    }
+    
+    public Vector3f getAntideriv() {
+        return this.antideriv;
+    }
+    
+    public void bindDerivative(Vector3f v, int order) {
+        if(order <= 0) {
+            System.err.println("ERROR: Can't set derivative of negative order. Please see Vector3f.bindAntiderivative()");
             return;
-        } else if(order > this.antiderivativeOf.size() - 1) {
-            d.bindDerivative(this, order);
-            ZERO.set(0,0,0);
-            System.err.println("WARNING: Order exceeds that of highest-order defined antiderivative. Undefined antiderivatives have been zeroed to factor in specified vector.");
-            for(int i = this.antiderivativeOf.size() - 1; i < order; i++) {
-                this.antiderivativeOf.add(i, ZERO);
+        }
+        
+        Vector3f d = v.deriv;
+        for(int i=1; i < order; i++) {
+            d = d.deriv;
+            if(d == null) {
+                System.err.println("ERROR: Can't set derivative of null.");
+                return;
             }
-            this.antiderivativeOf.add(order, d);    
-        } else {
+        }
+        this.deriv = d;
+        if(!d.getAntideriv().compare(this)) {
+            d.bindAntiderivative(this, order);
+        }
+    }
+    
+    public void bindAntiderivative(Vector3f v, int order) {
+        if(order <= 0) {
+            System.err.println("ERROR: Can't set derivative of negative order. Please see Vector3f.bindAntiderivative()");
+            return;
+        }
+        
+        Vector3f d = v.antideriv;
+        for(int i=1; i < order; i++) {
+            d = d.antideriv;
+            if(d == null) {
+                System.err.println("ERROR: Can't set derivative of null.");
+                return;
+            }
+        }
+        this.antideriv = d;
+        if(!d.getDeriv().compare(this)) {
             d.bindDerivative(this, order);
-            this.antiderivativeOf.add(order, d);
         }
     }
 }
