@@ -1,4 +1,4 @@
-package gui;
+package cjpl.gui;
 
 import java.io.IOException;
 

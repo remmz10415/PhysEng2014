@@ -1,4 +1,4 @@
-package gui;
+package cjpl.gui;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -9,12 +9,14 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import command.CommandManager;
+
 /**
  * The main class to start the engine. Uses ugly Swing.
  * @author steven
  *
  */
-public class Frame extends JFrame implements ActionListener {
+public class GUI extends JFrame implements ActionListener {
 
 	// text field can only enter 1 line. How tall should the box be in pixels.
 	public static final int TEXT_HEIGHT = 30;
@@ -30,7 +32,7 @@ public class Frame extends JFrame implements ActionListener {
 	private JTextField field;
 	
 	
-	public Frame() {
+	public GUI() {
 		JFrame frame = new JFrame("Engine");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
@@ -81,7 +83,7 @@ public class Frame extends JFrame implements ActionListener {
 	
 	public static void main(String[] args) throws IOException {
 		//Settings.readSettings(args[0]);
-		new Frame();
+		new GUI();
 		
 	}
 
