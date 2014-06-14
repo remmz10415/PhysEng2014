@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public abstract class Vector3d {
  
     protected double x,y,z;
-    private Vector3d deriv, antideriv = null;
+    private Vector3d deriv, antideriv;
     private static Vector3d ZERO = null;
     
     public double getX() {
