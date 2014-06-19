@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import cjpl.command.CommandManager;
+import cjpl.command.Console;
 
 /**
  * The main class to start the engine. Uses ugly Swing.
@@ -61,7 +61,6 @@ public class GUI extends JFrame implements ActionListener {
 		field.setSize(Settings.width, TEXT_HEIGHT);
 		field.addActionListener(this);
 		c.add(field);
-		
 	}
 	
 	@Override
@@ -72,7 +71,7 @@ public class GUI extends JFrame implements ActionListener {
 		 String text = field.getText().toLowerCase(); //ignore case
 	     if(!text.equals("")) { // ignore blank commands
 	    	area.append(LEFT_MARGIN + text + "\n");
-	    	String re = CommandManager.handleCommand(text);
+	    	String re = Console.handleCommand(text);
 	    	area.append(LEFT_MARGIN + LEFT_MARGIN + re + "\n");
 	    	field.setText("");
 	    }
