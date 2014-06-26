@@ -10,7 +10,6 @@ public class Vector3d extends PObject {
  
     private double x,y,z;
     private Vector3d deriv, antideriv;
-    private static Vector3d ZERO = null;
     
     public Vector3d(double x, double y, double z) {
         super(x, y, z);
