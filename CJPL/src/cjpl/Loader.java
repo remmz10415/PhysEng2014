@@ -21,7 +21,7 @@ public class Loader {
         gui = new GUI();
         System.out.println("here");
         gui.getCmd().bindEngine(engine); // awk as hell?
-    
+        //gui.show();
         // Main loop. Do we want Graphics and Engine to be calculated in the same loop?
         //while(true) {
             

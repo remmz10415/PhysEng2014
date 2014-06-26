@@ -3,6 +3,7 @@ package cjpl.command;
 import cjpl.engine.Engine;
 import cjpl.util.PObject;
 import cjpl.util.Vector3d;
+import java.util.ArrayList;
 
 /**
  * Handles commands.
@@ -60,8 +61,19 @@ public class CommandHandler {
                         break;
                     }
                     e.addObject(new Vector3d(x, y, z));
+                    me = "Successfully added Vector3d object";
+                    break;
+                case "list":
+                       if(input.length > 1 && input[1].equals("objects")) {
+                           me = "";
+                           ArrayList<PObject> pos = e.getObjects();
+                           for(PObject po : pos) {
+                               me += po + "\n";
+                           }
+                       }
+                       break;
 		}
-		
+                
 		return me;
 	}
 	

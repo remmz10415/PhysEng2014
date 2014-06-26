@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Vector3d extends PObject {
  
-    private double x,y,z;
     private Vector3d deriv, antideriv;
     private static Vector3d ZERO = null;
     
@@ -16,36 +15,10 @@ public class Vector3d extends PObject {
         super(x, y, z);
     }
     
-    public double[] get() {
-        return new double[] {this.x, this.y, this.z};
-    }
-    
-    public void setX(double x) {
-        this.x = x;
-    }
-    
-    public void setY(double y) {
-        this.y = y;
-    }
-    
-    public void setZ(double z) {
-        this.z = z;
-    }
-    
-    public void set(double[] v) {
-        this.x = v[0];
-        this.y = v[1];
-        this.z = v[2];
-    }
-    
-    public void set(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
+
     
     public boolean compare(Vector3d v) {
-        if(this.get() == v.get()) {
+        if(get() == v.get()) {
             return true;
         } else {
             return false;
@@ -59,6 +32,8 @@ public class Vector3d extends PObject {
     public Vector3d getAntideriv() {
         return this.antideriv;
     }
+    
+    
     
     public void bindDerivative(Vector3d v, int order) {
         if(order <= 0) {
