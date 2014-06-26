@@ -6,22 +6,14 @@ import java.util.ArrayList;
  *
  * @author Evan Coleman
  */
-public abstract class Vector3d {
+public class Vector3d extends PObject {
  
     private double x,y,z;
     private Vector3d deriv, antideriv;
     private static Vector3d ZERO = null;
     
-    public double getX() {
-        return this.x;
-    }
-    
-    public double getY() {
-        return this.y;    
-    }
-    
-    public double getZ() {
-        return this.z;
+    public Vector3d(double x, double y, double z) {
+        super(x, y, z);
     }
     
     public double[] get() {

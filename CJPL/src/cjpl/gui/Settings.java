@@ -1,6 +1,6 @@
 package cjpl.gui;
 
-import java.io.IOException;
+import java.io.*;
 
 public class Settings {
 
@@ -10,7 +10,8 @@ public class Settings {
 
 	
 	public static void readSettings(String file) throws IOException {
-		
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+                
 	}
 	
 }
