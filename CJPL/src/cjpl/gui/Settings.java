@@ -1,6 +1,5 @@
 package cjpl.gui;
 
-import cjpl.Loader;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.util.logging.Level;
@@ -16,7 +15,7 @@ public class Settings {
 	public static void readSettings(String file) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(file));
                 
-                Field[] fields = Loader.class.getFields();
+                Field[] fields = Settings.class.getFields();
                 
                 try {
                     String current;
