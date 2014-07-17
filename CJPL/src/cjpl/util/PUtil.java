@@ -11,14 +11,13 @@ package cjpl.util;
  * Making class generic is probably overkill.
  * @author steven
  */
-public abstract class PObject {
+public abstract class PUtil {
     
-   private double x, y, z; // position. May add a location class later on
+   private double x, y; // position. May add a location class later on
     
-    public PObject(double x, double y, double z) {
+    public PUtil(double x, double y) {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
     
     public double getX() {
@@ -29,8 +28,6 @@ public abstract class PObject {
         return y;
     }
     
-    public double getZ() {
-        return z;
-    }
+    public abstract void draw();
     
 }
