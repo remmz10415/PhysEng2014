@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import cjpl.command.CommandManager;
+import cjpl.command.CommandHandler;
 
 /**
  * The main class to start the engine. Uses ugly Swing.
@@ -31,19 +31,29 @@ public class GUI extends JFrame implements ActionListener {
 	private JTextArea area;
 	private JTextField field;
 	
+        CommandHandler cmd;
 	
+        /* It seems that code past the gui never executes. Do I need a new thread? */
 	public GUI() {
-		JFrame frame = new JFrame("Engine");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setSize(Settings.width, Settings.height);
-		//awk? 
-		Container main = new Container();
-		initItems(main);
-		
-		frame.add(main);
+
+                        JFrame frame = new JFrame("Engine");
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.pack();
+                        frame.setVisible(true);
+                        frame.setSize(Settings.width, Settings.height);
+                        //awk? 
+                        Container main = new Container();
+                        initItems(main);
+
+                        frame.add(main);
+                        cmd = new CommandHandler();
+
 	}
+        
+        
+        public CommandHandler getCmd() {
+            return cmd;
+        }
 	
 	/**
 	 * Initializes the main components onto a component, which is then added to the screen.
@@ -55,7 +65,11 @@ public class GUI extends JFrame implements ActionListener {
 		area = new JTextArea();
 		area.setBounds(0, 0, Settings.width, Settings.height - TEXT_HEIGHT - TEXT_OFFSET);
 		area.setEditable(false);
-		c.add(area);
+                JScrollPane scroll = new JScrollPane();
+                scroll.setViewportView(area);
+                scroll.getVerticalScrollBar().setUnitIncrement(16);
+                c.add(scroll);
+                c.add(area);
 		field = new JTextField("");
 		field.setBounds(0, Settings.height - TEXT_HEIGHT - TEXT_OFFSET, Settings.width, Settings.height - TEXT_OFFSET);
 		field.setSize(Settings.width, TEXT_HEIGHT);
@@ -72,7 +86,7 @@ public class GUI extends JFrame implements ActionListener {
 		 String text = field.getText().toLowerCase(); //ignore case
 	     if(!text.equals("")) { // ignore blank commands
 	    	area.append(LEFT_MARGIN + text + "\n");
-	    	String re = CommandManager.handleCommand(text);
+	    	String re = cmd.handleCommand(text);
 	    	area.append(LEFT_MARGIN + LEFT_MARGIN + re + "\n");
 	    	field.setText("");
 	    }
