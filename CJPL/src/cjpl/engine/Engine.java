@@ -15,9 +15,12 @@ import cjpl.util.*;
 public class Engine {
     
     ArrayList<PUtil> objects;
+    private static long GLOBAL_TIME = 0;
+    private Boolean isRunning = false;
     
     
     public Engine() {
+        isRunning = true;
         objects = new ArrayList<PUtil>(); // we assume nothing is on the screen at startup
     }
     
@@ -29,8 +32,22 @@ public class Engine {
         objects.add(po);
     }
     
-    
     public ArrayList<PUtil> getObjects() {
         return objects;
+    }
+    
+    public void run() {
+        new Thread(new Runnable() {
+            public void run() {
+                while(isRunning) {
+                    long time1 = System.currentTimeMillis();
+                    
+                    //... stuff goes here
+                    
+                    long time2 = System.currentTimeMillis();
+                    GLOBAL_TIME += time2-time1;
+                }
+            }
+        }).start();
     }
 }
