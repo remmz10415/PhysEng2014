@@ -25,12 +25,8 @@ public class Loader {
         gui.getCmd().bindEngine(engine); // awk as hell?
         
         SlickTest.startWindow(engine.getObjects());
-        //gui.show();
-        // Main loop. Do we want Graphics and Engine to be calculated in the same loop?
-        //while(true) {
+        
 
-            
-        //}
     }
     
     public static void main(String[] args) {

@@ -6,6 +6,8 @@
 
 package cjpl.util;
 
+import cjpl.util.Shapes.Shape;
+
 /**
  * Represents all physics objects. Don't know what attributes it'll represent yet
  * Making class generic is probably overkill.
@@ -14,12 +16,21 @@ package cjpl.util;
 public class PUtil {
     
     private boolean isVis;
-   private double x, y; // position. May add a location class later on
+    private double x, y; // position. May add a location class later on
+    
+    private Shape s; // how does a PUtil be a line? 
+    
     
     public PUtil(double x, double y) {
         this.x = x;
         this.y = y;
         isVis = true;
+        s = Shape.CIRCLE;
+    }
+    
+    public PUtil(double x, double y, Shape s) {
+        this(x, y);
+        this.s = s;
     }
     
     public double getX() {
@@ -65,6 +76,10 @@ public class PUtil {
         return isVis;
     }
     
+    public Shape getShape() {
+        return s;
+    }
+    
     /**
      * 
      * @param attribute Name of the attribute.
@@ -81,6 +96,16 @@ public class PUtil {
                 // example usage
                 case "visible": {
                     setVisible(Boolean.parseBoolean(value));
+                    return true;
+                }
+                
+                case "shape": {
+                    if(Shapes.getShape(value) != null) {
+                        s = Shapes.getShape(value);
+                    } else {
+                        return false;
+                    }
+                    
                     return true;
                 }
             }

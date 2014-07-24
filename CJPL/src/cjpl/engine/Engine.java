@@ -15,11 +15,17 @@ import cjpl.util.*;
 public class Engine {
     
     ArrayList<PUtil> objects;
-    
+    ArrayList<Graph> graphs;
     
     public Engine() {
         objects = new ArrayList<PUtil>(); // we assume nothing is on the screen at startup
+        
     }
+    
+    
+    
+    
+    
     
     public void removeObject(int index) {
         objects.remove(index);

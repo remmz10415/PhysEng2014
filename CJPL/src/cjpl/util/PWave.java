@@ -18,40 +18,40 @@ public abstract class PWave extends PUtil {
     }
     
     public double getSourceX() {
-        return this.sourceX;
+        return sourceX;
     }
     
     public double getSourceY() {
-        return this.sourceY;
+        return sourceY;
     }
     
     
     public Double getWavelength() {
-        return this.wavelength;
+        return wavelength;
     }
     
     public Double getFrequency() {
-        return this.frequency;
+        return frequency;
     }
     
     public Double getSpeed() {
-        return this.speed;
+        return speed;
     }
     
     public double getAmplitude() {
-        return this.amplitude;
+        return amplitude;
     }
     
     public double getPhase() {
-        return this.amplitude;
+        return amplitude;
     }
     
     public void setSourceX(double x) {
-        this.sourceX = x;
+        sourceX = x;
     }
     
     public void setSourceY(double y) {
-        this.sourceY = y;
+        sourceY = y;
     }
    
     
@@ -60,21 +60,21 @@ public abstract class PWave extends PUtil {
     }
     
     public void setAmplitude(double a) {
-        this.amplitude = a;
+        amplitude = a;
     }
     
     public void setPhase(double p) {
-        this.phase = p;
+       phase = p;
     }
     
     public void setSource(double x, double y) {
-        this.sourceX = x;
-        this.sourceY = y;
+       sourceX = x;
+        sourceY = y;
     }
     
     public void setSource(double[] d) {
-        this.sourceX = d[0];
-        this.sourceY = d[1];
+        sourceX = d[0];
+        sourceY = d[1];
     }
     
     /*
@@ -89,21 +89,21 @@ public abstract class PWave extends PUtil {
         if(nullCount != 1) { return; }
         
         if(w == null) {
-            this.frequency = f;
-            this.speed = s;
-            this.wavelength = s/f;
+            frequency = f;
+            speed = s;
+            wavelength = s/f;
         }
         
         if(f == null) {
-            this.wavelength = w;
-            this.speed = s;
-            this.frequency = s/w;
+            wavelength = w;
+            speed = s;
+            frequency = s/w;
         }
         
         if(s == null) {
-            this.wavelength = w;
-            this.frequency = f;
-            this.speed = w*f;
+            wavelength = w;
+            frequency = f;
+            speed = w*f;
         }
     }
     

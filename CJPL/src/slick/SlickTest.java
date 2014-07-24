@@ -7,6 +7,7 @@
 package slick;
 
 import cjpl.util.PUtil;
+import cjpl.util.Shapes.Shape;
 import java.util.ArrayList;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -53,7 +54,15 @@ public class SlickTest extends BasicGame
     public void render(GameContainer container, Graphics g) throws SlickException {
         for(PUtil po : objects) {
             if(po.isVisible()) {
-                g.drawOval((float) po.getX(), (float) po.getY(), 30, 30);
+                Shape s = po.getShape();
+                if(s.equals(Shape.CIRCLE)) {
+                    g.drawOval((float) po.getX(), (float) po.getY(), 30, 30);
+                } else if(s.equals(Shape.POINT)) {
+                    //g.draw
+                } else if(s.equals(Shape.SQUARE)) {
+                    g.drawRect((float) po.getX(), (float) po.getY(), 30, 30);
+                }
+                
             }
         }
         

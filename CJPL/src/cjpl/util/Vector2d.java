@@ -132,7 +132,5 @@ public class Vector2d extends PUtil {
         }
     }
     
-    public void draw() {
-        
-    };
+
 }
