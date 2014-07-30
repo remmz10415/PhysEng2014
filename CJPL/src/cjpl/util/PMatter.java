@@ -12,11 +12,13 @@ public class PMatter extends PUtil {
     
     private double x,y,mass,charge;
     private Double xCOM, yCOM, inertiaCOM;
+    private double rigidity;
     
     public PMatter(double x, double y, double mass, double charge) {
         super(x, y);
         this.mass = mass;
         this.charge = charge;
+        this.rigidity = Double.POSITIVE_INFINITY;
     }
     
     public Double getInertia(double disp) {
@@ -24,7 +26,7 @@ public class PMatter extends PUtil {
         return this.inertiaCOM;
     }
     
-    public Double getIntertiaCOM() {
+    public Double getInertiaCOM() {
         return this.inertiaCOM;
     }
     

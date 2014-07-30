@@ -12,7 +12,7 @@ import cjpl.util.*;
  *
  * @author steven
  */
-public class Engine {
+public class Engine implements Runnable {
     
     ArrayList<PUtil> objects;
     private static long GLOBAL_TIME = 0;
@@ -37,17 +37,14 @@ public class Engine {
     }
     
     public void run() {
-        new Thread(new Runnable() {
-            public void run() {
-                while(isRunning) {
-                    long time1 = System.currentTimeMillis();
+        while(isRunning) {
+            long time1 = System.currentTimeMillis();
+            //System.out.println(GLOBAL_TIME);
+            //... stuff goes here
                     
-                    //... stuff goes here
-                    
-                    long time2 = System.currentTimeMillis();
-                    GLOBAL_TIME += time2-time1;
-                }
-            }
-        }).start();
+            long time2 = System.currentTimeMillis();
+            GLOBAL_TIME += time2-time1;
+        }
     }
+    
 }

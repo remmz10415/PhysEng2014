@@ -20,6 +20,8 @@ public class Loader {
     public Loader() {
         
         engine = new Engine();
+        new Thread(engine).start();
+        
         gui = new GUI();
         System.out.println("here");
         gui.getCmd().bindEngine(engine); // awk as hell?
@@ -35,6 +37,7 @@ public class Loader {
     
     public static void main(String[] args) {
         new Loader();
+
     }
     
     
